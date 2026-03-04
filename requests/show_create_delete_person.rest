@@ -27,3 +27,34 @@ DELETE http://localhost:3001/api/persons/4
 
 ###
 GET http://localhost:3001/api/persons
+
+###
+POST https://fullstackopen-osa-3.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "Super Mario",
+    "number": 12345
+}
+
+###
+POST https://fullstackopen-osa-3.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "hgh": "name error"
+}
+
+###
+POST https://fullstackopen-osa-3.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "number error"
+}
+
+###
+DELETE https://fullstackopen-osa-3.onrender.com/api/persons/4
+
+###
+GET https://fullstackopen-osa-3.onrender.com/api/persons
