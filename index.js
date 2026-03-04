@@ -1,9 +1,11 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const app = express()
 
 app.use(express.json())
 app.use(morgan('tiny'))
+app.use(cors())
 
 let persons = [
     { 
@@ -65,6 +67,7 @@ const generateId = () => String(getRandomInt(100000))
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
+  console.log(`Request body is ${body}`)
 
     if (!body.name || !body.number) {
         return response.status(400).json({ 
