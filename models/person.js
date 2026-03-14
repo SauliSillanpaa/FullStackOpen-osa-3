@@ -16,10 +16,30 @@ mongoose.connect(url, { family: 4 })
   })
 
 const personSchema = new mongoose.Schema({
-  id: String,
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    minLength: 3,
+    required: true
+  },
+  number: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function(v) {
+        if (v.length < 8) return false;
+        const parts = v.split('-');
+        if (parts.length !== 2) return false;
+        const [first, second] = parts;
+        if (first.length < 2 || first.length > 3) return false;
+        if (!/^\d+$/.test(first)) return false;
+        if (!/^\d+$/.test(second)) return false;
+        return true;
+      },
+    }
+  },
 })
+
+mongoose.set('runValidators', true)
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {
