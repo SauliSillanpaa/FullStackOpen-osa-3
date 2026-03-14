@@ -8,7 +8,7 @@ const url = process.env.MONGODB_URI
 console.log('connecting to', url)
 mongoose.connect(url, { family: 4 })
 
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch(error => {
@@ -26,14 +26,14 @@ const personSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function(v) {
-        if (v.length < 8) return false;
-        const parts = v.split('-');
-        if (parts.length !== 2) return false;
-        const [first, second] = parts;
-        if (first.length < 2 || first.length > 3) return false;
-        if (!/^\d+$/.test(first)) return false;
-        if (!/^\d+$/.test(second)) return false;
-        return true;
+        if (v.length < 8) return false
+        const parts = v.split('-')
+        if (parts.length !== 2) return false
+        const [first, second] = parts
+        if (first.length < 2 || first.length > 3) return false
+        if (!/^\d+$/.test(first)) return false
+        if (!/^\d+$/.test(second)) return false
+        return true
       },
     }
   },
